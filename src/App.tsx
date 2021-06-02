@@ -1,26 +1,114 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/style.css';
+
+interface State {
+  date: Date,
+  parent: string,
+  future?: string
+}
+
+class App extends React.Component<{}, State> {
+
+  constructor(props : {}) {
+    super(props);
+    this.state = {
+      date: new Date(),
+      parent: "me",
+      future: undefined
+    };
+
+    this.calculate = this.calculate.bind(this)
+    this.updateDate = this.updateDate.bind(this)
+  }
+
+  calculate() {
+    console.log("calculating")
+    let diff = Math.abs(new Date().getTime() - this.state.date.getTime())
+
+    let diffInWeeks = Math.floor(diff / 1000 / 60 / 60 / 24 / 7);
+
+    if (diffInWeeks % 2 === 0) {
+      this.setState({
+        future: this.state.parent
+      })
+    } else {
+      this.setState({
+        future: this.state.parent === "me" ? "ex" : "me"
+      })
+    }
+
+  }
+
+  updateDate(date: Date) {
+    this.setState({
+      date
+    })
+
+    this.calculate()
+  }
+
+  updateParent(parent: string) {
+    this.setState({
+      parent
+    })
+
+    this.calculate()
+  }
+
+  render() {
+
+    const hasFuture = this.state.future !== undefined;
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src="baby.jpg" className="App-logo" alt="logo" />
+          <h1> Efo Yeled </h1>
+        </header>
+        <div className="App-container"> 
+          <div className="App-body">
+            <p>This weekend, kids are with:</p>
+            <label>
+            <input 
+              type="radio" 
+              name="kids" 
+              value="me" 
+              checked={this.state.parent === "me"}
+              onChange={(e) => this.updateParent(e.target.value)} />
+              me
+            </label>
+            <label>
+              <input 
+              type="radio" 
+              name="kids" 
+              value="ex" 
+              checked={this.state.parent === "ex"}
+              onChange={(e) => this.updateParent(e.target.value)}/>
+              my ex
+            </label>
+            <p> Pick the weekend you're curious about:</p>
+            <DayPicker 
+              mode="single" 
+              required 
+              defaultSelected={this.state.date}
+              onSelect={(e) => this.updateDate(e!)} />
+          </div>
+          <div className="App-result">
+            {!hasFuture &&
+            <p>Waiting for a selection...</p>
+            }
+            {hasFuture &&
+            <p>{this.state.future}</p>
+            }
+          </div>
+        </div>
+        Image by <a href="https://pixabay.com/users/esudroff-627167/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">esudroff</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">Pixabay</a>
+      </div>
+    );
+  }
 }
 
 export default App;
