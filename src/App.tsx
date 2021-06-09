@@ -17,18 +17,22 @@ class App extends React.Component<{}, State> {
     this.state = {
       date: new Date(),
       parent: "me",
-      future: undefined
+      future: "me"
     };
 
     this.calculate = this.calculate.bind(this)
     this.updateDate = this.updateDate.bind(this)
   }
-
+  
   calculate() {
     console.log("calculating")
     let diff = Math.abs(new Date().getTime() - this.state.date.getTime())
 
+    console.log(this.state.date)
+
     let diffInWeeks = Math.floor(diff / 1000 / 60 / 60 / 24 / 7);
+
+    console.log(diff / 1000 / 60 / 60 / 24 / 7)
 
     if (diffInWeeks % 2 === 0) {
       this.setState({
@@ -43,19 +47,18 @@ class App extends React.Component<{}, State> {
   }
 
   updateDate(date: Date) {
+    console.log(date)
     this.setState({
       date
-    })
+    }, () => this.calculate())
 
-    this.calculate()
+    
   }
 
   updateParent(parent: string) {
     this.setState({
       parent
-    })
-
-    this.calculate()
+    }, () => this.calculate())
   }
 
   render() {
@@ -68,7 +71,6 @@ class App extends React.Component<{}, State> {
           <img src="baby.jpg" className="App-logo" alt="logo" />
           <h1> Efo Yeled </h1>
         </header>
-        <div className="App-container"> 
           <div className="App-body">
             <p>This weekend, kids are with:</p>
             <label>
@@ -94,18 +96,11 @@ class App extends React.Component<{}, State> {
               mode="single" 
               required 
               defaultSelected={this.state.date}
-              onSelect={(e) => this.updateDate(e!)} />
+              onSelect={(e) => this.updateDate(e!)}
+              footer={`On ${this.state.date.toDateString()}, the kids are with ${this.state.future}`} />
+            Image by <a href="https://pixabay.com/users/esudroff-627167/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">esudroff</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">Pixabay</a>
           </div>
-          <div className="App-result">
-            {!hasFuture &&
-            <p>Waiting for a selection...</p>
-            }
-            {hasFuture &&
-            <p>{this.state.future}</p>
-            }
-          </div>
-        </div>
-        Image by <a href="https://pixabay.com/users/esudroff-627167/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">esudroff</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1399332">Pixabay</a>
+        
       </div>
     );
   }
