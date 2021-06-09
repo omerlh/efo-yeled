@@ -62,9 +62,6 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
-
-    const hasFuture = this.state.future !== undefined;
-
     return (
       <div className="App">
         <header className="App-header">
