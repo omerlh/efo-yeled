@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/efo-yeled/static/css/main.281243fe.chunk.css",
-    "main.js": "/efo-yeled/static/js/main.ac7d1fed.chunk.js",
-    "main.js.map": "/efo-yeled/static/js/main.ac7d1fed.chunk.js.map",
+    "main.css": "/efo-yeled/static/css/main.d10dac3b.chunk.css",
+    "main.js": "/efo-yeled/static/js/main.04ca9e29.chunk.js",
+    "main.js.map": "/efo-yeled/static/js/main.04ca9e29.chunk.js.map",
     "runtime-main.js": "/efo-yeled/static/js/runtime-main.3c63aa27.js",
     "runtime-main.js.map": "/efo-yeled/static/js/runtime-main.3c63aa27.js.map",
     "static/css/2.2d11985d.chunk.css": "/efo-yeled/static/css/2.2d11985d.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.6c3d27f4.chunk.js.map": "/efo-yeled/static/js/3.6c3d27f4.chunk.js.map",
     "index.html": "/efo-yeled/index.html",
     "static/css/2.2d11985d.chunk.css.map": "/efo-yeled/static/css/2.2d11985d.chunk.css.map",
-    "static/css/main.281243fe.chunk.css.map": "/efo-yeled/static/css/main.281243fe.chunk.css.map",
+    "static/css/main.d10dac3b.chunk.css.map": "/efo-yeled/static/css/main.d10dac3b.chunk.css.map",
     "static/js/2.ae868aba.chunk.js.LICENSE.txt": "/efo-yeled/static/js/2.ae868aba.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3c63aa27.js",
     "static/css/2.2d11985d.chunk.css",
     "static/js/2.ae868aba.chunk.js",
-    "static/css/main.281243fe.chunk.css",
-    "static/js/main.ac7d1fed.chunk.js"
+    "static/css/main.d10dac3b.chunk.css",
+    "static/js/main.04ca9e29.chunk.js"
   ]
 }
